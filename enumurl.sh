@@ -1,5 +1,14 @@
 #!/bin/bash
 
-for url in $(grep -o '[A-Za-z0-9_\.-]*\.*cisco.com' index.html | sort -u) do
-	host $url | grep "has address" | cut -d " " -f4
+# usage = ./enumurl.sh <some url>
+
+#set $target to 1rst param passed
+target=$1
+
+# grep pattern for processing the index.html file
+pattern='[A-Za-z0-9_\.-]*\.*'$target
+
+webpage=$(wget $target -q -O -)
+for url in $(grep -o $pattern <<< $webpage | sort -u)
+ do host $url | grep "has address" | cut -d " " -f4
 done
