@@ -2,7 +2,7 @@
 
 # usage = ./enumurl.sh <some url>
 
-#set $target to 1rst param passed
+#set $target to first param passed to this script
 target=$1
 
 # grep pattern for processing the index.html file
